@@ -1,0 +1,13 @@
+@import (reference) '../../styles/globalStyle';
+@pageName: ~'landing-page';
+@maxBigContentWidth: 600px;
+@maxContentWidth: 400px;
+@contentBottomMargin: 24px;
+@sectionPadding: 24px;
+
+.@{pageName} {
+	padding-top: @headerHeight;
+	min-height: calc(100vh - @footerHeight);
+	display: flex;
+	flex-wrap: wrap;
+}

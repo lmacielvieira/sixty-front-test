@@ -1,0 +1,44 @@
+@import (reference) '../../styles/globalStyle';
+@componentName: ~'header-component';
+@iconWidth: 44px;
+@iconHeight: @headerHeight;
+@tabMargin: 32px;
+@tabSmallMargin: 8px;
+
+.@{componentName} {
+  width: 100%;
+  min-height: @headerHeight;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  z-index: 2;
+	background: @orange;
+  justify-content: space-between;
+
+
+  .@{componentName}-holder {
+    display: flex;
+    align-items: center;
+    margin-left: @tabMargin;
+
+    .@{componentName}-icon {
+      height: @iconHeight;
+      object-fit: contain;
+      user-select: none;
+    }
+  }
+
+}
+
+
+@media screen and (max-width: @screen-xs) {
+  .@{componentName} {
+    .@{componentName}-holder {
+      margin-left: @tabSmallMargin;
+		}
+  }
+}
+

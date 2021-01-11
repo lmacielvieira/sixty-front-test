@@ -1,0 +1,71 @@
+/* eslint-env browser */
+/* eslint max-classes-per-file: ["error", 2] */
+import React from 'react'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import NotFoundPage from '../NotFoundPage'
+import ErrorPage from '../ErrorPage'
+import LandingPage from '../LandingPage'
+
+import './style.less'
+import {KEYS} from '../../settings'
+import {HeaderComponent} from '../../components/HeaderComponent'
+import {FooterComponent} from '../../components/FooterComponent'
+
+export default class Manager extends React.Component<{}, {error: boolean}> {
+	_pageName = 'router-page'
+
+	private route: null
+
+	constructor(props: {} | Readonly<{}>) {
+		super(props)
+
+		this.route = null
+		this.state = {
+			error: false
+		}
+
+		window.onbeforeunload = () => {
+			window.scrollTo(0, 0)
+		}
+	}
+
+	componentDidCatch() {
+		this.setState({error: true})
+	}
+
+	// -------------------------------------------------------------------------//
+	// Requests
+	// -------------------------------------------------------------------------//
+
+	// -------------------------------------------------------------------------//
+	// Event Handlers
+	// -------------------------------------------------------------------------//
+
+	// -------------------------------------------------------------------------//
+	// Render
+	// -------------------------------------------------------------------------//
+
+	render() {
+		const {error} = this.state
+
+		return (
+			<Router
+				ref={(input: null) => {
+					this.route = input
+				}}>
+				<div className={`${this._pageName}`}>
+					<HeaderComponent />
+					{error ? (
+						<Route component={ErrorPage} />
+					) : (
+						<Switch>
+							<Route exact path={KEYS.pageKeys.index} component={LandingPage} />
+							<Route component={NotFoundPage} />
+						</Switch>
+					)}
+					<FooterComponent />
+				</div>
+			</Router>
+		)
+	}
+}
