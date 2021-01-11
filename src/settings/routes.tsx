@@ -18,6 +18,7 @@ interface RouteConfig {
 
 export const ROUTES: RouteConfig = {
 	routeUrl: prodUrl,
+	imgUrl: 'https://www.sixt.de',
 	routeApi,
 	offers: {
 		list: {
