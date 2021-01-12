@@ -37,6 +37,7 @@ export function OfferCardComponent({
 	const renderImage = () => {
 		return (
 			<img
+				data-testid="offer-img"
 				className={`${_componentName}-img`}
 				alt=""
 				onError={() => {
