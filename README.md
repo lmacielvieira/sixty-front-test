@@ -151,13 +151,6 @@ To serve the build in a server, just copy the generated content
 from the build folder to the http server service. You can also try the build
 locally using the package https://www.npmjs.com/package/http-server
 
-### Available routes
-/
-
-/user <- protected and allowed after login
-
-/login <- it can only be acessed if not logged
-
 ### Tested browsers && CI/CD
 tested on chrome and safari
 
