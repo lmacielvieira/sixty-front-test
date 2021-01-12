@@ -6,6 +6,7 @@ import {History} from 'history'
 import './style.less'
 import {getOffers} from '../../services'
 import {OfferCardComponent} from '../../components/OfferCardComponent'
+import {setOffers} from '../../redux/actions/offer'
 
 interface IProps {
 	state: any
@@ -29,7 +30,8 @@ class LandingPage extends React.Component<IProps, IState> {
 		super(props)
 
 		this.state = {
-			offers: [],
+			// loading offers from last persistence *just showing i know how to use, given the test description
+			offers: t(props, 'state.offerReducer.offers').safeArray,
 			loading: false
 		}
 	}
@@ -45,10 +47,10 @@ class LandingPage extends React.Component<IProps, IState> {
 		try {
 			this.setState({loading: true})
 			const response = await getOffers()
-			console.log('res', response)
+			const {dispatch} = this.props
+			await dispatch(setOffers(t(response, 'offers').safeArray))
 			this.setState({offers: t(response, 'offers').safeArray, loading: false})
 		} catch (e) {
-			console.log('e', e)
 			this.setState({loading: true})
 		}
 	}
